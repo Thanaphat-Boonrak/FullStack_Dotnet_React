@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Past Activity 1",
+    "date": "2025-11-09T10:00:00",
+    "description": "Activity 2 months ago",
+    "category": "drinks",
+    "city": "London",
+    "venue": "The Lamb and Flag, 33, Rose Street, Seven Dials, Covent Garden, London, Greater London, England, WC2E 9EB, United Kingdom",
+    "latitude": 51.51171665,
+    "longitude": -0.1256611057818921
+  },
+  {
+    "title": "Past Activity 2",
+    "date": "2025-12-09T10:00:00",
+    "description": "Activity 1 month ago",
+    "category": "culture",
+    "city": "Paris",
+    "venue": "Louvre Museum, Rue Saint-Honoré, Quartier du Palais Royal, 1st Arrondissement, Paris, Ile-de-France, Metropolitan France, 75001, France",
+    "latitude": 48.8611473,
+    "longitude": 2.33802768704666
+  },
+  {
+    "title": "Future Activity 1",
+    "date": "2026-02-09T10:00:00",
+    "description": "Activity 1 month in future",
+    "category": "culture",
+    "city": "London",
+    "venue": "Natural History Museum",
+    "latitude": 51.496510900000004,
+    "longitude": -0.17600190725447445
+  },
+  {
+    "title": "Future Activity 2",
+    "date": "2026-03-09T10:00:00",
+    "description": "Activity 2 months in future",
+    "category": "music",
+    "city": "London",
+    "venue": "The O2",
+    "latitude": 51.502936649999995,
+    "longitude": 0.0032029278126681844
+  },
+  {
+    "title": "Future Activity 3",
+    "date": "2026-04-09T10:00:00",
+    "description": "Activity 3 months in future",
+    "category": "drinks",
+    "city": "London",
+    "venue": "The Mayflower",
+    "latitude": 51.501778,
+    "longitude": -0.053577
+  },
+  {
+    "title": "Future Activity 4",
+    "date": "2026-05-09T10:00:00",
+    "description": "Activity 4 months in future",
+    "category": "drinks",
+    "city": "London",
+    "venue": "The Blackfriar",
+    "latitude": 51.512146650000005,
+    "longitude": -0.10364680647106028
+  },
+  {
+    "title": "Future Activity 5",
+    "date": "2026-06-09T10:00:00",
+    "description": "Activity 5 months in future",
+    "category": "culture",
+    "city": "London",
+    "venue": "Sherlock Holmes Museum, 221b, Baker Street, Marylebone, London, Greater London, England, NW1 6XE, United Kingdom",
+    "latitude": 51.5237629,
+    "longitude": -0.1584743
+  },
+  {
+    "title": "Future Activity 6",
+    "date": "2026-07-09T10:00:00",
+    "description": "Activity 6 months in future",
+    "category": "music",
+    "city": "London",
+    "venue": "Roundhouse, Chalk Farm Road, Maitland Park, Chalk Farm, London Borough of Camden, London, Greater London, England, NW1 8EH, United Kingdom",
+    "latitude": 51.5432505,
+    "longitude": -0.15197608174931165
+  },
+  {
+    "title": "Future Activity 7",
+    "date": "2026-08-09T10:00:00",
+    "description": "Activity 7 months in future",
+    "category": "travel",
+    "city": "London",
+    "venue": "River Thames, England, United Kingdom",
+    "latitude": 51.5575525,
+    "longitude": -0.781404
+  },
+  {
+    "title": "Future Activity 8",
+    "date": "2026-09-09T10:00:00",
+    "description": "Activity 8 months in future",
+    "category": "film",
+    "city": "London",
+    "venue": "River Thames, England, United Kingdom",
+    "latitude": 51.5575525,
+    "longitude": -0.781404
+  }
+]

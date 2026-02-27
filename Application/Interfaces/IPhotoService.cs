@@ -1,6 +1,11 @@
+using Application.Profile.DTOs;
+using Microsoft.AspNetCore.Http;
+
 namespace Application.Interfaces;
 
-public class IPhotoService
+public interface IPhotoService
 {
+    Task<PhotoUploadResult?> UploadPhoto(IFormFile file);
     
+    Task<string> DeletePhoto(string publicId);
 }

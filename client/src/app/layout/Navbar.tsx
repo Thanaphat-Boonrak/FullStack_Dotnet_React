@@ -1,10 +1,4 @@
-import {
-  Box,
-  AppBar,
-  Toolbar,
-  Container,
-  LinearProgress,
-} from "@mui/material";
+import { Box, AppBar, Toolbar, Container, LinearProgress } from "@mui/material";
 
 import MenuItemLink from "../shared/components/MenuItemLink";
 import { useStore } from "../lib/hooks/useStore";
@@ -18,7 +12,7 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="relative"
+        position="fixed"
         sx={{
           backgroundImage:
             "linear-gradient(135deg,#182a73 0%,#218aae 69%,#20a7ac 89%)",
@@ -38,7 +32,6 @@ export default function Navbar() {
 
             <Box sx={{ display: "flex", gap: 2 }}>
               <MenuItemLink to="/activities">ACTIVITIES</MenuItemLink>
-              <MenuItemLink to="/error">TEST ERROR</MenuItemLink>
             </Box>
             <Box display="flex" alignItems="center">
               {currentUser ? (

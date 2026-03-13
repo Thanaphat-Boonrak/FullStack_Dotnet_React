@@ -14,7 +14,7 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<User>(op
     
     public DbSet<Photo> Photos { get; set; }
     
-    public DbSet<Comment> Comments { get; set; }
+    public DbSet<Comment> Comments { get; set; } 
     
     
     public DbSet<UserFollowing>  UserFollowings { get; set; }
@@ -34,7 +34,7 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<User>(op
 
 
             x.HasOne(o => o.Target).WithMany(o => o.Followers).HasForeignKey(o => o.TargetId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         });
         var dateTimeConverter = new ValueConverter<DateTime,DateTime>(v => v.ToUniversalTime(), v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
 

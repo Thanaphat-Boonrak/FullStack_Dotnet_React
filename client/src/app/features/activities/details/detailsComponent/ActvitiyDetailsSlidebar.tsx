@@ -10,13 +10,13 @@ import {
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import type { Activity } from "../../../../lib/types/activity";
+import { Link } from "react-router";
 
 type Props = {
   activity: Activity;
 };
 
 export default function ActivityDetailsSidebar({ activity }: Props) {
-  const following = true;
   return (
     <>
       <Paper
@@ -37,7 +37,7 @@ export default function ActivityDetailsSidebar({ activity }: Props) {
           <Grid container key={att.id} alignItems="center">
             <Grid size={8}>
               <List sx={{ display: "flex", flexDirection: "column" }}>
-                <ListItem>
+                <ListItem component={Link} to={`/profiles/${att.id}`}>
                   <ListItemAvatar>
                     <Avatar
                       alt={att.displayName + " image"}
@@ -46,7 +46,7 @@ export default function ActivityDetailsSidebar({ activity }: Props) {
                   </ListItemAvatar>
                   <ListItemText>
                     <Typography variant="h6">{att.displayName}</Typography>
-                    {following && (
+                    {att.isFollowing && (
                       <Typography variant="body2" color="orange">
                         Following
                       </Typography>

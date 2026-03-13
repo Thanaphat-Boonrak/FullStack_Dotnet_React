@@ -9,14 +9,14 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import type { Profile } from "../../lib/types/activity";
+import { useProfile } from "../../lib/hooks/useProfile";
+import { useParams } from "react-router";
 
-type Props = {
-  profile: Profile;
-};
+export default function ProfileHeader() {
+  const { id } = useParams();
+  const { profile, isCurrentUser, toggleFollow } = useProfile(id);
 
-export default function ProfileHeader({ profile }: Props) {
-  const isFollowing = true;
+  if (!profile) return <Typography>No Profile</Typography>;
   return (
     <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
       <Grid container spacing={2}>
@@ -29,7 +29,7 @@ export default function ProfileHeader({ profile }: Props) {
             ></Avatar>
             <Box display="flex" flexDirection="column" gap={2}>
               <Typography variant="h4">{profile.displayName}</Typography>
-              {isFollowing && (
+              {profile.isFollowing && (
                 <Chip
                   variant="outlined"
                   color="secondary"
@@ -45,21 +45,27 @@ export default function ProfileHeader({ profile }: Props) {
             <Box display="flex" justifyContent="space-around" width="100%">
               <Box textAlign="center">
                 <Typography variant="h6">Followers</Typography>
-                <Typography variant="h4"></Typography>
+                <Typography variant="h4">{profile.followersCount}</Typography>
               </Box>
               <Box textAlign="center">
                 <Typography variant="h6">Following</Typography>
-                <Typography variant="h4">42</Typography>
+                <Typography variant="h4">{profile.followingCount}</Typography>
               </Box>
             </Box>
             <Divider sx={{ width: "100%" }}></Divider>
-            <Button
-              fullWidth
-              variant="outlined"
-              color={isFollowing ? "error" : "success"}
-            >
-              {isFollowing ? "Unfollow" : "Follow"}
-            </Button>
+            {!isCurrentUser && (
+              <>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => toggleFollow.mutate()}
+                  disabled={toggleFollow.isPending}
+                  color={profile.isFollowing ? "error" : "success"}
+                >
+                  {profile.isFollowing ? "Unfollow" : "Follow"}
+                </Button>
+              </>
+            )}
           </Stack>
         </Grid>
       </Grid>

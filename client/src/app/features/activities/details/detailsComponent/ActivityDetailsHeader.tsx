@@ -9,7 +9,6 @@ type Props = {
 };
 export default function ActivityDetailsHeader({ activity }: Props) {
   const { updateAttendance } = useActivities(activity.id);
-  console.log(activity.isCancelled);
 
   return (
     <Card

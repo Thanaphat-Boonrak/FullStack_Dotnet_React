@@ -1,5 +1,6 @@
 using Application.Activities.Commands;
 using Application.Activities.Queries;
+using Application.Core;
 using Application.DTOs;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -13,9 +14,9 @@ public class ActivitiesController: BaseController
 
 
     [HttpGet]
-    public async Task<ActionResult<List<ActivityDto>>> GetAllActivity()
+    public async Task<ActionResult<PageList<ActivityDto, DateTime?>>> GetAllActivity([FromQuery]ActivityParams request)
     {
-        return await Mediator.Send(new GetActivityList.Query());
+        return HandleResult(await Mediator.Send(new GetActivityList.Query(request)));
     }
     
     [HttpGet("{id}")]
@@ -55,4 +56,6 @@ public class ActivitiesController: BaseController
        return HandleResult(await Mediator.Send(new DeleteActivity.Command(id)));
        
     }
-}
+
+
+} 

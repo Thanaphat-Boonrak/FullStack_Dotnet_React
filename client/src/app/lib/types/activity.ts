@@ -1,3 +1,8 @@
+export type PagedList<T, TCursor> = {
+  items: T[];
+  nextCursor?: TCursor;
+};
+
 export type Activity = {
   id: string;
   title: string;
@@ -15,6 +20,13 @@ export type Activity = {
   hostId?: string;
   hostDisplayName?: string;
   hostImage?: string;
+};
+
+
+export type ResetPassword = {
+  email: string;
+  resetCode: string;
+  newPassword: string;
 };
 
 export type User = {
@@ -54,6 +66,9 @@ export interface Profile {
   displayName: string;
   bio?: string;
   imageUrl?: string;
+  followersCount?: number;
+  followingCount?: number;
+  isFollowing?: boolean;
 }
 
 export interface Photo {

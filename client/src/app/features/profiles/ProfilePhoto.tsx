@@ -73,13 +73,15 @@ export default function ProfilePhoto() {
                     loading="lazy"
                   />
                   {isCurrentUser && (
-                    <>
-                      <Box
-                        sx={{ position: "absolute", top: 0, left: 0 }}
-                        onClick={() => setMainPhoto.mutate(item)}
-                      >
-                        <StarButton selected={item.url === profile?.imageUrl} />
+                    <Box>
+                      <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+                        <StarButton
+                          selected={item.url === profile?.imageUrl}
+                          isDisabled={item.url === profile?.imageUrl}
+                          click={() => setMainPhoto.mutate(item)}
+                        />
                       </Box>
+
                       {profile?.imageUrl !== item.url && (
                         <Box
                           sx={{ position: "absolute", top: 0, right: 0 }}
@@ -88,7 +90,7 @@ export default function ProfilePhoto() {
                           <DeleteButton />
                         </Box>
                       )}
-                    </>
+                    </Box>
                   )}
                 </ImageListItem>
               ))}

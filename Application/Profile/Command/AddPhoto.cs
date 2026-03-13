@@ -36,8 +36,7 @@ public class AddPhoto
             
             context.Photos.Add(photo);
             
-            var result  = await context.SaveChangesAsync(cancellationToken) > 0;
-            return result ? Result<Photo>.Success(photo) : Result<Photo>.Failure("Failed to upload photo", 400);
+            return await context.SaveChangesAsync(cancellationToken) > 0 ? Result<Photo>.Success(photo) : Result<Photo>.Failure("Failed to upload photo", 400);
         }
     }
 }

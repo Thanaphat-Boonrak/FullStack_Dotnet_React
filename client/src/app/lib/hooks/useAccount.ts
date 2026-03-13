@@ -1,10 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { LoginSchema } from "../schema/loginSchema";
 import agent from "../api/agents";
-import type { User } from "../types/activity";
+import type { ResetPassword, User } from "../types/activity";
 import { useNavigate } from "react-router";
 import type { RegisterSchema } from "../schema/registerSchema";
 import { toast } from "react-toastify";
+import type { ChangePasswordSchema } from "../schema/changePassword";
 
 export const useAccount = () => {
   const queryClient = useQueryClient();
@@ -26,7 +27,6 @@ export const useAccount = () => {
     },
     onSuccess: () => {
       toast.success("Register successful - you can now login");
-      navigate("/login");
     },
   });
 
@@ -40,11 +40,71 @@ export const useAccount = () => {
       navigate("/");
     },
   });
+
   const { data: currentUser, isLoading: loadingUserInfo } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const response = await agent.get<User>("/account/user-info");
       return response.data;
+    },
+  });
+
+  const verifyEmail = useMutation({
+    mutationFn: async ({ userId, code }: { userId: string; code: string }) => {
+      await agent.get(`/confirmEmail?userId=${userId}&code=${code}`);
+    },
+  });
+
+  const changePassword = useMutation({
+    mutationFn: async (data: ChangePasswordSchema) => {
+      await agent.post(`/account/change-password`, {
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      });
+    },
+  });
+
+  const resendVerifyEmail = useMutation({
+    mutationFn: async ({
+      email,
+      userId,
+    }: {
+      email?: string;
+      userId?: string | null;
+    }) => {
+      await agent.get(`/account/resendConfirmEmail`, {
+        params: {
+          email,
+          userId,
+        },
+      });
+    },
+    onSuccess: () => {
+      toast.success("Email sent - please check your email");
+    },
+  });
+
+  const forgetPassword = useMutation({
+    mutationFn: async (email: string) => {
+      await agent.post("/forgotPassword", { email });
+    },
+  });
+
+  const resetPassword = useMutation({
+    mutationFn: async (data: ResetPassword) => {
+      await agent.post("/resetPassword", data);
+    },
+  });
+
+  const fetchGithubToken = useMutation({
+    mutationFn: async (code: string) => {
+      const response = await agent.post(`/account/github-login?code=${code}`);
+      return response.data;
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
     },
   });
 
@@ -54,5 +114,11 @@ export const useAccount = () => {
     loginUser,
     currentUser,
     logoutUser,
+    verifyEmail,
+    resendVerifyEmail,
+    changePassword,
+    resetPassword,
+    forgetPassword,
+    fetchGithubToken,
   };
 };

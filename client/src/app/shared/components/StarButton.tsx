@@ -4,9 +4,11 @@ import { Box } from "@mui/system";
 
 type Props = {
   selected: boolean;
+  isDisabled: boolean;
+  click: () => void;
 };
 
-export default function StarButton({ selected }: Props) {
+export default function StarButton({ selected, isDisabled, click }: Props) {
   return (
     <Box>
       <Button
@@ -16,6 +18,8 @@ export default function StarButton({ selected }: Props) {
           position: "relative",
           cursor: "pointer",
         }}
+        disabled={isDisabled}
+        onClick={click}
       >
         <StarBorder
           sx={{ position: "absolute", fontSize: 32, color: "white" }}
